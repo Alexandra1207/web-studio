@@ -1,0 +1,45 @@
+@import "../../../../assets/styles/variables";
+
+.header {
+  padding: 40px 0;
+
+  .container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .menu {
+      margin-right: 200px;
+
+      .menu-link.active {
+        color: $blue-color;
+      }
+    }
+
+
+    a.header-phone {
+      color: $blue-color;
+      text-decoration: none;
+    }
+
+    .header-actions a {
+      display: flex;
+      align-items: center;
+      color: $base-text-color;
+      text-decoration: none;
+
+      img {
+        margin-right: 7px;
+      }
+
+      span {
+        margin-top: 3px;
+      }
+    }
+  }
+}
+
+
+.active {
+  color: $blue-color;
+}

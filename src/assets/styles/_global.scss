@@ -1,0 +1,308 @@
+@import "variables";
+
+app-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+app-login {
+  flex: 1 0 auto;
+}
+
+app-footer,
+app-header {
+  flex: 0 0 auto;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 16px;
+  font-weight: 500;
+  color: $base-text-color;
+}
+
+.container {
+  max-width: $container-width;
+  margin: 0 auto;
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.menu {
+  nav ul {
+    display: flex;
+    gap: 30px;
+    list-style: none;
+
+    li {
+      &.active {
+        color: $blue-color;
+      }
+      a.active {
+        color: $blue-color;
+      }
+    }
+  }
+}
+
+.button {
+  box-sizing: border-box;
+
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  background-color: $blue-color;
+  color: #FFFFFF;
+  border: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+
+  &:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+  }
+}
+
+.input {
+  box-sizing: border-box;
+  border: 2px solid $blue-color;
+  padding: 17px 20px;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  color: $base-text-color;
+  border-radius: 3px;
+
+}
+
+.mat-mdc-menu-content {
+  background-color: $bg-blue-color;
+}
+
+
+.mat-mdc-menu-item .mat-mdc-menu-item-text font {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: $base-text-color;
+}
+
+.title {
+  font-family: "Lora", sans-serif;
+  font-weight: 400;
+  font-size: 38px;
+  line-height: 1.3;
+  color: $blue-color;
+}
+
+#owlCarMain .owl-carousel {
+  .owl-dots {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+
+    .owl-dot {
+      span {
+        width: 10px;
+        height: 10px;
+        border: 1px solid #FFFFFF;
+        background-color: transparent;
+      }
+
+      &.active {
+        span {
+          background-color: #FFFFFF;
+
+        }
+      }
+
+    }
+  }
+}
+
+
+.reviews-carousel .owl-carousel .owl-stage-outer {
+  height: 268px;
+}
+
+
+.request-modal {
+  width: 727px;
+  box-sizing: border-box;
+  padding: 95px;
+  border: 2px solid $blue-color;
+  border-radius: 10px;
+  text-align: center;
+
+  .request-failed {
+    color: red;
+    margin-top: 25px;
+  }
+
+
+  .title {
+    margin-bottom: 20px;
+  }
+
+  .request-text {
+    font-size: 14px;
+    margin-bottom: 40px;
+    color: #1E1A2B;
+
+  }
+
+  .request-inputs {
+    margin-bottom: 20px;
+    .request-input {
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+
+      select {
+        color: $blue-color;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+
+      }
+
+      .input {
+        width: 422px;
+      }
+    }
+  }
+
+  .request-button {
+    .button {
+      width: 422px;
+      padding: 15px;
+      box-sizing: border-box;
+      font-weight: 400;
+      font-size: 16px;
+
+      &.success-request-button {
+        width: 73px;
+      }
+    }
+
+  }
+}
+
+.mat-mdc-dialog-surface.mdc-dialog__surface {
+  border-radius: 10px !important;
+  position: relative;
+
+
+  .request-modal-close {
+    position: absolute;
+    cursor: pointer;
+    top: 30px;
+    right: 30px;
+  }
+}
+
+
+a:-webkit-any-link {
+  color: inherit;
+}
+
+a:-webkit-any-link
+//a:visited {
+//
+//}
+
+a:-webkit-any-link:active {
+  color: inherit  !important;
+}
+//.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+//  background-color: transparent !important;
+//}
+//
+//.mdc-text-field {
+//  padding: 0;
+//}
+//
+//.mat-form-field-appearance-fill .mdc-text-field--no-label .mat-mdc-select-arrow-wrapper {
+//  display: none;
+//}
+//.mdc-text-field--outlined .mat-mdc-form-field-infix, .mdc-text-field--no-label .mat-mdc-form-field-infix {
+//  padding: 0 !important;
+//}
+//.mdc-line-ripple {
+//  display: none;
+//}
+//
+//.mdc-text-field--filled:not(.mdc-text-field--disabled) {
+//  background-color: transparent !important;
+//}
+//
+//.mat-mdc-select-arrow {
+//  display: none;
+//}
+//
+//.mat-mdc-form-field-infix {
+//  padding: 0;
+//  width: 422px;
+//}
+//
+//.mdc-text-field {
+//  padding: 0 !important;
+//}
+//
+//.mdc-text-field--no-label .mat-mdc-form-field-infix {
+//  padding: 0 !important;
+// }
+//
+//.mat-mdc-select {
+//  width: 422px !important;
+//}
+//
+//.mat-mdc-form-field-infix {
+//  width: 422px !important;
+//}
+//
+//.mat-mdc-form-field-subscript-wrapper {
+//  display: none;
+//}
+//
+//.mat-mdc-select {
+//  height: 53px;
+//}
+//
+//
+//::ng-deep .mat-form-field.mat-focused .mat-form-field-underline {
+//  background-color: transparent !important;
+//}
+////.mat-form-field:hover .mat-form-field-underline {
+////  background-color: transparent !important;
+////}
+////
+////.mat-form-field:hover .mat-form-field-ripple {
+////  background-color: transparent !important;
+////}
+//
+//.mat-mdc-select {
+//  color: $blue-color !important;
+//  font-size: 14px !important;
+//  font-weight: 400 !important;
+//  //font-family: "Montserrat", sans-serif;
+//}
+//
+//.mat-form-field .input .mat-select {
+//  font-family: 'Montserrat', sans-serif;
+//}
+//
+//.mat-mdc-option {
+//  color: $blue-color !important;
+//  font-size: 14px !important;
+//  font-weight: 400 !important;
+//}
+
+

@@ -1,0 +1,79 @@
+@import "../../../../assets/styles/variables";
+
+
+.footer {
+
+  padding: 40px 0 54px;
+  background-color: $bg-blue-color;
+
+  .container {
+    .footer-top {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      font-weight: 400;
+
+      .logo {
+        margin-right: 40px;
+      }
+    }
+
+    .footer-bottom {
+      display: flex;
+      gap: 60px;
+
+      .footer-block {
+        .footer-title {
+          color: $blue-color;
+          margin-bottom: 10px;
+
+          &.footer-title-social {
+            margin-bottom: 15px;
+          }
+        }
+
+        &.footer-address {
+          width: 253px;
+        }
+
+        .footer-info {
+          line-height: 21px;
+          font-weight: 400;
+
+          &.footer-info-phone {
+            margin-bottom: 10px;
+            display: block;
+            color: $base-text-color;
+          }
+
+          &.footer-info-email {
+            color: $base-text-color;
+          }
+
+
+        }
+
+        .footer-btn {
+          width: 153px;
+          padding: 10px;
+          font-size: 12px;
+        }
+
+        .footer-social-link {
+          padding: 8px;
+
+          &:not(:last-child) {
+            margin-right: 12px;
+          }
+        }
+
+
+      }
+    }
+  }
+
+  .copyrights {
+    color: $blue-color;
+    font-weight: 400;
+  }
+}

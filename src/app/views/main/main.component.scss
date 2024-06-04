@@ -1,0 +1,430 @@
+@import "../../../assets/styles/variables";
+
+.main {
+  margin-bottom: 120px;
+
+  .container {
+position: relative;
+    .main-slider {
+      position: relative;
+      height: 500px;
+      padding: 100px 95px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      box-sizing: border-box;
+      overflow: hidden;
+
+      .main-content {
+        width: 610px;
+        z-index: 10;
+
+        .main-subtitle {
+          font-family: "Montserrat", sans-serif;
+          font-weight: 600;
+          font-size: 12px;
+          color: $blue-color;
+          text-transform: uppercase;
+          letter-spacing: 4px;
+        }
+
+        .main-title {
+          font-family: "Lora", sans-serif;
+          font-weight: 400;
+          font-size: 50px;
+          line-height: 1.3;
+          color: #FFFFFF;
+
+          span {
+            color: $blue-color;
+          }
+
+        }
+
+        .main-text {
+          font-size: 24px;
+          font-weight: 400;
+          line-height: 1.3;
+          color: #FFFFFF;
+          width: 456px;
+          margin-top: 20px;
+        }
+
+        .button {
+          padding: 15px;
+          width: 163px;
+          box-sizing: border-box;
+          font-size: 16px;
+          font-weight: 400;
+          margin-top: 50px;
+        }
+      }
+
+
+      .main-img {
+        position: absolute;
+        width: 750px;
+        height: 500px;
+        right: 0;
+        top: 0;
+        }
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 1405px;
+        height: 1405px;
+        background-color: $bg-blue-color;
+        border-radius: 50%;
+        left: -56%;
+        bottom: -40%;
+        z-index: 0;
+      }
+    }
+
+    a {
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      position: absolute;
+      z-index: 2;
+
+      &.move-backward {
+        left: 11px;
+      }
+
+      &.move-forward {
+        right: 11px;
+      }
+    }
+  }
+}
+
+
+.services {
+  margin-bottom: 120px;
+
+  .container {
+    .title {
+      margin-bottom: 40px;
+    }
+
+    .services-items {
+
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+
+      .services-item {
+        width: 290px;
+        height: 498px;
+
+        img {
+          margin-bottom: 15px;
+        }
+
+        .services-item-title {
+          font-size: 20px;
+          font-weight: 500;
+          color: $blue-color;
+          margin-bottom: 10px;
+        }
+
+        .services-item-text {
+          height: 90px;
+          font-size: 14px;
+          line-height: 1.3;
+          margin-bottom: 15px;
+          font-weight: 400;
+        }
+
+        .services-item-info {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+
+          .services-item-price {
+            font-weight: 600;
+            font-size: 20px;
+            color: $blue-color;
+          }
+
+          .button {
+            padding: 15px;
+            font-size: 16px;
+            font-weight: 400;
+            width: 163px;
+          }
+        }
+
+
+      }
+    }
+  }
+}
+
+.about {
+  margin-bottom: 120px;
+
+  .container {
+    display: flex;
+
+    .about-img {
+      margin-right: 68px;
+    }
+
+    .about-content {
+      .title {
+        margin-bottom: 20px;
+      }
+
+      .about-text {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 1.3;
+        margin-bottom: 40px;
+        max-width: 633px;
+
+        span {
+          font-weight: 500;
+        }
+
+      }
+
+      .about-advantages-title {
+        font-family: "Lora", sans-serif;
+        font-size: 26px;
+        font-weight: 400;
+        color: $blue-color;
+        margin-bottom: 20px;
+      }
+
+      .about-advantages-items {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        gap: 20px;
+
+        .about-advantages-item {
+          width: 316px;
+          display: flex;
+          align-items: center;
+
+          .about-advantages-item-number {
+            position: relative;
+            font-family: "Lora", sans-serif;
+            font-weight: 500;
+            font-size: 50px;
+            color: $blue-color;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: $bg-blue-color;
+            flex-shrink: 0;
+            margin-right: 20px;
+
+            span {
+              position: absolute;
+              left: 50%;
+              transform: translateX(-50%);
+              top: -50%;
+            }
+          }
+
+          .about-advantages-item-description {
+            font-weight: 400;
+            font-size: 14px;
+
+            span {
+              font-weight: 500;
+            }
+          }
+
+        }
+      }
+    }
+  }
+}
+
+.popular-articles {
+  margin-bottom: 120px;
+
+  .container {
+    .title {
+      margin-bottom: 40px;
+    }
+
+    .popular-articles-items {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 40px;
+    }
+
+    .popular-articles-link {
+      display: flex;
+      align-items: center;
+      justify-content: end;
+      font-size: 20px;
+      color: $blue-color;
+
+      svg {
+        margin-left: 18px;
+      }
+    }
+  }
+}
+
+.reviews {
+  margin-bottom: 120px;
+
+  .container {
+    .title {
+      margin-bottom: 20px;
+    }
+
+    .reviews-carousel {
+      position: relative;
+
+      .owl-carousel .owl-stage-outer {
+        height: 270px !important;
+      }
+
+      .reviews-item {
+        box-sizing: border-box;
+        width: 396px;
+        height: 267px;
+        padding: 30px;
+        border: 1px solid $blue-color;
+        border-radius: 5px;
+
+        .reviews-item-head {
+          display: flex;
+          align-items: center;
+          margin-bottom: 15px;
+
+          .reviews-item-image {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            margin-right: 26px;
+            background-position: center;
+            background-size: cover;
+          }
+
+          .reviews-item-name {
+            font-size: 18px;
+            font-weight: 600;
+            color: $blue-color;
+          }
+        }
+
+        .reviews-item-text {
+          font-size: 16px;
+          font-weight: 400;
+          line-height: 1.4;
+        }
+      }
+
+      .reviews-arrows {
+        display: flex;
+
+        a {
+          top: calc(50% - 8px);
+          display: flex;
+          position: absolute;
+
+
+          &.move-backward {
+            left: -25px;
+          }
+
+          &.move-forward {
+            right: -25px;
+          }
+        }
+      }
+    }
+
+  }
+}
+
+
+.contacts {
+  margin-bottom: 120px;
+
+  .container {
+    display: flex;
+
+    .contacts-map {
+      margin-right: 26px;
+
+      iframe {
+        vertical-align: bottom;
+      }
+    }
+
+    .contacts-info {
+
+      width: 501px;
+
+      .title {
+        margin-bottom: 20px;
+      }
+
+      .contacts-subtitle {
+        font-size: 20px;
+        color: $blue-color;
+        margin-bottom: 10px;
+      }
+
+      .contacts-description {
+        display: block;
+        font-size: 14px;
+        line-height: 1.3;
+        margin-bottom: 20px;
+        color: $base-text-color;
+      }
+
+      .contacts-socials {
+        display: flex;
+        gap: 20px;
+      }
+    }
+
+  }
+}
+
+//#mySelect {
+//  padding: 10px; /* Задаем padding для элемента select */
+//  border: 1px solid #ccc; /* Добавляем рамку для элемента select */
+//}
+//
+//#mySelect option {
+//  padding: 40px; /* Задаем padding для элементов option */
+//}
+
+//
+//.input {
+//  position: relative;
+//  display: inline-block;
+//  border: 1px solid #ccc;
+//  padding: 5px;
+//  cursor: pointer;
+//  min-width: 200px;
+//}
+//
+//.option {
+//  display: none;
+//  position: absolute;
+//  background-color: #fff;
+//  border: 1px solid #ccc;
+//  width: 100%;
+//}
+//
+//.input.active .option {
+//  display: block;
+//}
+//
+//.option:hover {
+//  background-color: #f9f9f9;
+//}

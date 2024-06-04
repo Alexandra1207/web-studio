@@ -1,0 +1,54 @@
+<div class="request-modal-close" (click)="closePopup()">
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <line x1="0.935622" y1="0.649994" x2="12.9564" y2="12.6708" stroke="#BEBEBE" stroke-linecap="round"/>
+    <line x1="12.9236" y1="0.629775" x2="0.902769" y2="12.6506" stroke="#BEBEBE" stroke-linecap="round"/>
+  </svg>
+
+</div>
+
+<div class="request-modal" [formGroup]="requestForm" *ngIf="!showSuccessMessage; else successMessage">
+  <div class="title">
+    Заявка на услугу
+  </div>
+  <div class="request-inputs">
+    <div class="request-input" *ngIf="showSelect" (change)="getSelectedOption($event)" [(ngModel)]="selectedOption">
+      <select class="input" #selectElement formControlName="service">
+        <option class="option" [selected]="selectedOption === 'Создание сайтов'">Создание сайтов</option>
+        <option class="option" [selected]="selectedOption === 'Продвижение'">Продвижение</option>
+        <option class="option" [selected]="selectedOption === 'Реклама'">Реклама</option>
+        <option class="option" [selected]="selectedOption === 'Копирайтинг'">Копирайтинг</option>
+
+      </select>
+    </div>
+    <div class="request-input">
+      <input type="text" class="input" placeholder="Ваше имя" formControlName="name"
+             [ngStyle]="{'border-color': requestForm.get('name')?.invalid
+      && (requestForm.get('name')?.dirty || requestForm.get('name')?.touched) ? 'red' : ''}">
+    </div>
+    <div class="request-input">
+      <input type="text" class="input" placeholder="Ваш номер телефона" formControlName="phone"
+             [ngStyle]="{'border-color': requestForm.get('phone')?.invalid
+      && (requestForm.get('phone')?.dirty || requestForm.get('phone')?.touched) ? 'red' : ''}">
+    </div>
+  </div>
+  <div class="request-button">
+    <button class="button" (click)="postInfo()" [disabled]="requestForm.invalid">Оставить заявку</button>
+  </div>
+
+  <div class="request-failed" *ngIf="failedRequest">Произошла ошибка при отправке формы, попробуйте еще раз.</div>
+</div>
+
+<ng-template #successMessage>
+  <div class="request-modal">
+    <div class="title">
+      Спасибо за вашу заявку!
+    </div>
+    <div class="request-text">
+      Мы свяжемся с вами при первой же возможности.
+    </div>
+
+    <div class="request-button success-request-button">
+      <button class="button success-request-button" (click)="closePopup()">Окей</button>
+    </div>
+  </div>
+</ng-template>
