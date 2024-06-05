@@ -41,7 +41,6 @@
 
       .blog-filter {
         width: 148px;
-        //width: 257px;
         box-sizing: border-box;
         position: relative;
         font-weight: 400;
@@ -97,7 +96,6 @@
               }
             }
           }
-
         }
 
         &.open {
@@ -115,59 +113,7 @@
             border: 2px solid $bg-blue-color;
           }
         }
-
-        //.blog-filters {
-        //  width: 257px;
-        //  border: 2px solid $bg-blue-color;
-        //  border-radius: 5px;
-        //
-        //
-        //  .blog-filters-head {
-        //    padding: 12px 23px;
-        //    background-color: $bg-blue-color;
-        //    display: flex;
-        //    justify-content: space-between;
-        //    align-items: center;
-        //
-        //  }
-        //
-        //  &.open .blog-filters-body {
-        //    display: block;
-        //  }
-        //
-        //  .blog-filters-body {
-        //    padding: 12px 23px;
-        //
-        //
-        //    .blog-filters-item {
-        //      display: flex;
-        //      align-items: center;
-        //      justify-content: space-between;
-        //      color: #BEBEBE;
-        //      cursor: pointer;
-        //
-        //
-        //      &:not(:last-child) {
-        //        margin-bottom: 14px;
-        //      }
-        //
-        //      &.active {
-        //        color: $base-text-color;
-        //      }
-        //
-        //    }
-        //
-        //  }
-        //}
-
-        //&.open {
-        //  .blog-filters-body {
-        //    display: block;
-        //  }
-        //}
-
       }
-
     }
 
 
@@ -213,9 +159,7 @@
           }
         }
       }
-
     }
-
   }
 }
 

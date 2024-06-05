@@ -11,28 +11,11 @@ import {RequestService} from "../../services/request.service";
 export class FooterComponent {
   constructor(public dialog: MatDialog, private requestService: RequestService) {}
 
-  openModal() {
-    const dialogRef = this.dialog.open(RequestModalComponent);
-
-    dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
-      return;
-    });
-  }
-
-
-  openModalWithSelect() {
-    this.requestService.setShowSelectElement(true);
-    // открываем модальное окно
-  }
-
   openModalWithoutSelect() {
     this.requestService.setShowSelectElement(false);
-    // открываем модальное окно
     const dialogRef = this.dialog.open(RequestModalComponent);
 
     dialogRef.afterClosed().subscribe(result => {
-      // console.log(`Dialog result: ${result}`);
       return;
     });
   }

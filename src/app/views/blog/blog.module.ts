@@ -5,7 +5,7 @@ import { BlogRoutingModule } from './blog-routing.module';
 import { BlogComponent } from './blog/blog.component';
 import { ArticleComponent } from './article/article.component';
 import {SharedModule} from "../../shared/shared.module";
-import {FormGroup, FormsModule} from "@angular/forms";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({

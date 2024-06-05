@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../../../core/auth/auth.service";
 import {MatSnackBar} from "@angular/material/snack-bar";
@@ -23,7 +23,8 @@ export class SignupComponent {
   constructor(private fb: FormBuilder,
               private authService: AuthService,
               private _snackBar: MatSnackBar,
-              private router: Router) {}
+              private router: Router) {
+  }
 
 
   signup() {
@@ -50,12 +51,12 @@ export class SignupComponent {
             this.router.navigate(['/']);
           },
           error: (errorResponse: HttpErrorResponse) => {
-          if (errorResponse.error && errorResponse.error.message) {
-            this._snackBar.open(errorResponse.error.message);
-          } else {
-            this._snackBar.open('Ошибка регистрации');
+            if (errorResponse.error && errorResponse.error.message) {
+              this._snackBar.open(errorResponse.error.message);
+            } else {
+              this._snackBar.open('Ошибка регистрации');
+            }
           }
-      }
         })
     }
   }

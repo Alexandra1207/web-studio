@@ -119,10 +119,8 @@ a {
       &.active {
         span {
           background-color: #FFFFFF;
-
         }
       }
-
     }
   }
 }
@@ -214,95 +212,9 @@ a:-webkit-any-link {
 }
 
 a:-webkit-any-link
-//a:visited {
-//
-//}
 
 a:-webkit-any-link:active {
   color: inherit  !important;
 }
-//.mdc-text-field--filled:not(.mdc-text-field--disabled) {
-//  background-color: transparent !important;
-//}
-//
-//.mdc-text-field {
-//  padding: 0;
-//}
-//
-//.mat-form-field-appearance-fill .mdc-text-field--no-label .mat-mdc-select-arrow-wrapper {
-//  display: none;
-//}
-//.mdc-text-field--outlined .mat-mdc-form-field-infix, .mdc-text-field--no-label .mat-mdc-form-field-infix {
-//  padding: 0 !important;
-//}
-//.mdc-line-ripple {
-//  display: none;
-//}
-//
-//.mdc-text-field--filled:not(.mdc-text-field--disabled) {
-//  background-color: transparent !important;
-//}
-//
-//.mat-mdc-select-arrow {
-//  display: none;
-//}
-//
-//.mat-mdc-form-field-infix {
-//  padding: 0;
-//  width: 422px;
-//}
-//
-//.mdc-text-field {
-//  padding: 0 !important;
-//}
-//
-//.mdc-text-field--no-label .mat-mdc-form-field-infix {
-//  padding: 0 !important;
-// }
-//
-//.mat-mdc-select {
-//  width: 422px !important;
-//}
-//
-//.mat-mdc-form-field-infix {
-//  width: 422px !important;
-//}
-//
-//.mat-mdc-form-field-subscript-wrapper {
-//  display: none;
-//}
-//
-//.mat-mdc-select {
-//  height: 53px;
-//}
-//
-//
-//::ng-deep .mat-form-field.mat-focused .mat-form-field-underline {
-//  background-color: transparent !important;
-//}
-////.mat-form-field:hover .mat-form-field-underline {
-////  background-color: transparent !important;
-////}
-////
-////.mat-form-field:hover .mat-form-field-ripple {
-////  background-color: transparent !important;
-////}
-//
-//.mat-mdc-select {
-//  color: $blue-color !important;
-//  font-size: 14px !important;
-//  font-weight: 400 !important;
-//  //font-family: "Montserrat", sans-serif;
-//}
-//
-//.mat-form-field .input .mat-select {
-//  font-family: 'Montserrat', sans-serif;
-//}
-//
-//.mat-mdc-option {
-//  color: $blue-color !important;
-//  font-size: 14px !important;
-//  font-weight: 400 !important;
-//}
 
 

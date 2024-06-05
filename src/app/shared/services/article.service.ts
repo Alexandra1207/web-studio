@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
-import {CategoryType} from "../../../types/category.type";
 import {environment} from "../../../environments/environment";
 import {ArticleType} from "../../../types/article.type";
 import {ActiveParamsType} from "../../../types/active-params.type";
@@ -16,7 +15,6 @@ import {ActionType} from "../../../types/action.type";
 export class ArticleService {
 
   constructor(private http: HttpClient) {
-
   }
 
   getPopularArticles(): Observable<ArticleType[]> {
@@ -40,10 +38,6 @@ export class ArticleService {
       params: params
     })
   }
-
-  // postLike(commentId: string): Observable<DefaultResponseType> {
-  //   return this.http.post<DefaultResponseType>(environment.api + 'comments/' + commentId + '/apply-action', {"action": "like"});
-  // }
 
   postComment(articleId: string, commentText: string): Observable<DefaultResponseType> {
     return this.http.post<DefaultResponseType>(environment.api + 'comments', {

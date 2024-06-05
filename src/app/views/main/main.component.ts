@@ -1,4 +1,4 @@
-import {Component, ElementRef, OnInit, TemplateRef, ViewChild} from '@angular/core';
+import {Component} from '@angular/core';
 import {ArticleService} from "../../shared/services/article.service";
 import {ArticleType} from "../../../types/article.type";
 import {OwlOptions} from "ngx-owl-carousel-o";
@@ -16,11 +16,6 @@ import {RequestService} from "../../shared/services/request.service";
 export class MainComponent {
 
   articles: ArticleType[] = [];
-
-  // @ViewChild('selectElement', {static: false}) selectElement: ElementRef = new ElementRef(null);
-  // @ViewChild('popup') popup!: TemplateRef<ElementRef>;
-  dialogRef: MatDialogRef<any> | null = null;
-  showSuccessMessage: boolean = false;
 
   customOptionsMain: OwlOptions = {
     loop: true,
@@ -95,14 +90,6 @@ export class MainComponent {
     },
   ];
 
-  requestForm = this.fb.group({
-    name: ['', Validators.required],
-    phone: ['', Validators.required],
-    // service: [null, Validators.required],
-    service: ['Сервис не указан'],
-  })
-
-
   constructor(private articleService: ArticleService, private fb: FormBuilder, private dialog: MatDialog, private router: Router, private requestService: RequestService) {
   }
 
@@ -111,24 +98,6 @@ export class MainComponent {
       .subscribe((data: ArticleType[]) => {
         this.articles = data;
       })
-
-  }
-
-  onSelectChange(event: any) {
-    // Расширяем select при изменении выбранного значения
-    event.target.style.width = event.target.options[event.target.selectedIndex].scrollWidth + 'px';
-  }
-
-  selectOption(optionText: string) {
-    // this.dialogRef = this.dialog.open(this.popup); // Присваиваем dialogRef значение при открытии модального окна
-    // this.dialogRef.afterOpened().subscribe(() => {
-    //   const select = this.selectElement.nativeElement as HTMLSelectElement;
-    //   const index = Array.from(select.options).findIndex(option => option.innerText === optionText);
-    //   select.selectedIndex = index === -1 ? 0 : index;
-    // });
-  }
-  updateService(value: string) {
-      this.requestForm.patchValue({ service: value } as { service: string | null });
   }
 
   openModalWithSelect(option: string) {
@@ -136,59 +105,10 @@ export class MainComponent {
     this.requestService.setSelectedOption(option);
     const dialogRef = this.dialog.open(RequestModalComponent);
     dialogRef.componentInstance.selectedOption = option;
-    // console.log(dialogRef.componentInstance.selectedOption);
 
     dialogRef.afterClosed().subscribe(result => {
       return;
     });
   }
 
-  // openModalWithSelect(option: string) {
-  //   this.requestService.setShowSelectElement(true);
-  //   this.dataService.setSelectedOption(option);
-  //   const dialogRef = this.dialog.open(RequestModalComponent);
-  // }
-  // openModalWithSelect() {
-  //   this.requestService.setShowSelectElement(true);
-  //   // открываем модальное окно
-  //   const dialogRef = this.dialog.open(RequestModalComponent);
-  //
-  //   dialogRef.afterClosed().subscribe(result => {
-  //     // console.log(`Dialog result: ${result}`);
-  //     return;
-  //   });
-  // }
-
-  // selectOption(optionText: string) {
-  //   this.dialogRef = this.dialog.open(this.popup);
-  //   this.dialogRef.afterOpened().subscribe(() => {
-  //     const select = this.selectElement.nativeElement as HTMLSelectElement;
-  //     const index = Array.from(select.options).findIndex(option => option.innerText === optionText);
-  //     select.selectedIndex = index === -1 ? 0 : index;
-  //   });
-  // }
-
-  // selectOption(optionText: string) {
-  //   this.dialog.open(this.popup).afterOpened().subscribe(() => {
-  //     const select = this.selectElement.nativeElement as HTMLSelectElement;
-  //     const index = Array.from(select.options).findIndex(option => option.innerText === optionText);
-  //     select.selectedIndex = index === -1 ? 0 : index;
-  //   });
-  //   // this.dialog.open(this.popup);
-  //   // const select = this.selectElement.nativeElement as HTMLSelectElement;
-  //   // const index = Array.from(select.options).findIndex(option => option.innerText === optionText);
-  //   // select.selectedIndex = index === -1 ? 0 : index;
-  // }
-
-  postRequest() {
-    if (this.requestForm.valid) {
-      console.log(this.requestForm.value);
-      this.showSuccessMessage = true;
-    }
-  }
-
-  closePopup() {
-    this.dialogRef?.close();
-    this.router.navigate(['/']);
-  }
 }

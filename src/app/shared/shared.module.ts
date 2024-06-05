@@ -7,8 +7,7 @@ import { FormatDatePipe } from './pipes/format-date.pipe';
 import { RequestModalComponent } from './components/request-modal/request-modal.component';
 import {MatDialogModule} from "@angular/material/dialog";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
-import {NgxMaskDirective, NgxMaskPipe, provideNgxMask} from "ngx-mask";
-// import { NgxMaskModule } from 'ngx-mask';
+import {NgxMaskDirective, NgxMaskPipe} from "ngx-mask";
 
 
 
@@ -25,6 +24,5 @@ import {NgxMaskDirective, NgxMaskPipe, provideNgxMask} from "ngx-mask";
     RouterModule
   ],
   exports: [ArticleCardComponent, FormatDatePipe],
-  // providers: [provideNgxMask()]
 })
 export class SharedModule { }

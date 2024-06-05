@@ -42,17 +42,12 @@ export class ArticleComponent implements OnInit {
         .subscribe((data: FullArticleType) => {
           this.article = data;
           this.comments = this.article.comments;
-          console.log(this.comments);
-
-
           if (this.article.commentsCount > 3) {
             this.isMoreComments = true;
           }
 
           this.checkAndSetIsActionsStatus(this.comments);
-
         })
-
     });
 
     this.activatedRouter.params.subscribe(params => {
@@ -61,14 +56,11 @@ export class ArticleComponent implements OnInit {
           this.relatedArticle = data;
         })
     })
-
   }
-
 
   getAuthService(): AuthService {
     return this.authService;
   }
-
 
   toggleAction(commentId: string, action: 'like' | 'dislike') {
 

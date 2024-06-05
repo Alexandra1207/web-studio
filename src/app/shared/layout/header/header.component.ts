@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../../../core/auth/auth.service";
 import {DefaultResponseType} from "../../../../types/default-response.type";
-import {HttpErrorResponse} from "@angular/common/http";
 import {MatSnackBar} from "@angular/material/snack-bar";
 import {Router} from "@angular/router";
 import {UserService} from "../../services/user.service";
@@ -25,24 +24,16 @@ export class HeaderComponent implements OnInit {
 
   ngOnInit(): void {
 
-    // window.location.reload();
-
     this.authService.isLogged$.subscribe((isLoggedIn: boolean) => {
       this.isLogged = isLoggedIn;
-
     });
-
 
     this.userService.getUserInfo().subscribe((data: UserInfoType | DefaultResponseType) => {
       if ((data as DefaultResponseType).error !== undefined) {
         throw new Error((data as DefaultResponseType).message);
       }
-
-      console.log(data);
       this.userInfo = data as UserInfoType;
-      console.log(this.userInfo.name);
     })
-
   }
 
   logout(): void {

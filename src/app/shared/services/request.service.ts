@@ -23,9 +23,6 @@ export class RequestService {
     });
   }
 
-
-
-
   setSelectedOption(option: string) {
     this.selectedOption = option;
   }
