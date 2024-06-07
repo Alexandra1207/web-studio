@@ -11,24 +11,32 @@
     Заявка на услугу
   </div>
   <div class="request-inputs">
-    <div class="request-input" *ngIf="showSelect" (change)="getSelectedOption($event)" [(ngModel)]="selectedOption">
-      <select class="input" #selectElement formControlName="service">
-        <option class="option" [selected]="selectedOption === 'Создание сайтов'">Создание сайтов</option>
-        <option class="option" [selected]="selectedOption === 'Продвижение'">Продвижение</option>
-        <option class="option" [selected]="selectedOption === 'Реклама'">Реклама</option>
-        <option class="option" [selected]="selectedOption === 'Копирайтинг'">Копирайтинг</option>
-
+    <div class="request-input" *ngIf="showSelect">
+      <select class="input" formControlName="service">
+        <option class="option" value="Создание сайтов">Создание сайтов</option>
+        <option class="option" value="Продвижение">Продвижение</option>
+        <option class="option" value="Реклама">Реклама</option>
+        <option class="option" value="Копирайтинг">Копирайтинг</option>
       </select>
     </div>
     <div class="request-input">
       <input type="text" class="input" placeholder="Ваше имя" formControlName="name"
              [ngStyle]="{'border-color': requestForm.get('name')?.invalid
       && (requestForm.get('name')?.dirty || requestForm.get('name')?.touched) ? 'red' : ''}">
+      <div class="invalid-feedback" *ngIf="requestForm.get('name')?.errors?.['required'] && (requestForm.get('name')?.touched || requestForm.get('name')?.dirty)">
+        Введите имя
+      </div>
     </div>
     <div class="request-input">
       <input type="text" class="input" placeholder="Ваш номер телефона" formControlName="phone"
              [ngStyle]="{'border-color': requestForm.get('phone')?.invalid
       && (requestForm.get('phone')?.dirty || requestForm.get('phone')?.touched) ? 'red' : ''}">
+      <div class="invalid-feedback" *ngIf="requestForm.get('phone')?.errors?.['required'] && (requestForm.get('phone')?.touched || requestForm.get('phone')?.dirty)">
+        Введите номер телефона
+      </div>
+      <div class="invalid-feedback" *ngIf="requestForm.get('phone')?.errors?.['pattern']">
+        Введите номер в формате цифр
+      </div>
     </div>
   </div>
   <div class="request-button">

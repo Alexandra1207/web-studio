@@ -34,7 +34,7 @@
       </a>
       <a [matMenuTriggerFor]="menu" *ngIf="isLogged && userInfo">
         <img src="/assets/images/user.svg" alt="иконка пользователя">
-        <span>Привет, {{userInfo.name}}!</span>
+        <span>Привет, {{userName}}!</span>
       </a>
       <mat-menu #menu="matMenu">
         <button mat-menu-item>

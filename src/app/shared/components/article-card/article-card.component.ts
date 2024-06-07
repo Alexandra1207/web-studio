@@ -8,7 +8,7 @@ import {environment} from "../../../../environments/environment";
   styleUrl: './article-card.component.scss'
 })
 export class ArticleCardComponent {
-  @Input() article!: ArticleType;
+  @Input() article: ArticleType | undefined;
 
   serverStaticPath = environment.serverStaticPath;
 }

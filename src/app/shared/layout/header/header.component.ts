@@ -14,6 +14,7 @@ import {UserInfoType} from "../../../../types/user-info.type";
 export class HeaderComponent implements OnInit {
   isLogged: boolean = false;
   userInfo: UserInfoType = {  id: '', name: '', email: ''};
+  userName: string = '';
 
   constructor(private authService: AuthService,
               private _snackBar: MatSnackBar,
@@ -33,6 +34,7 @@ export class HeaderComponent implements OnInit {
         throw new Error((data as DefaultResponseType).message);
       }
       this.userInfo = data as UserInfoType;
+      this.userName = this.userInfo.name;
     })
   }
 

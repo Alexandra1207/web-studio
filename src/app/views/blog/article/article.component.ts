@@ -19,9 +19,8 @@ import {AuthService} from "../../../core/auth/auth.service";
 })
 export class ArticleComponent implements OnInit {
 
-  article!: FullArticleType;
-  comments!: CommentType[];
-  comment?: CommentType;
+  article: FullArticleType | undefined;
+  comments: CommentType[] | undefined;
   relatedArticle!: ArticleType[];
   serverStaticPath = environment.serverStaticPath;
   isMoreComments: boolean = false;
@@ -31,9 +30,9 @@ export class ArticleComponent implements OnInit {
 
   constructor(private articleService: ArticleService,
               private activatedRouter: ActivatedRoute,
-              private router: Router,
               private _snackBar: MatSnackBar,
-              private authService: AuthService,) {}
+              private authService: AuthService,) {
+  }
 
   ngOnInit() {
 
@@ -45,7 +44,6 @@ export class ArticleComponent implements OnInit {
           if (this.article.commentsCount > 3) {
             this.isMoreComments = true;
           }
-
           this.checkAndSetIsActionsStatus(this.comments);
         })
     });
@@ -63,25 +61,24 @@ export class ArticleComponent implements OnInit {
   }
 
   toggleAction(commentId: string, action: 'like' | 'dislike') {
-
     if (!this.getAuthService().getIsLoggedIn()) {
       this._snackBar.open('Чтобы поставить реакцию нужно войти или зарегистрироваться');
       return;
     }
-    const comment: CommentType | undefined = this.comments.find(comment => comment.id === commentId);
 
-    if (comment !== undefined) {
-      let postAction: 'like' | 'dislike' = action;
+    if (this.comments) {
+      const comment: CommentType | undefined = this.comments.find(comment => comment.id === commentId);
 
-      if (action === 'like') {
-        postAction = comment.isLiked ? 'dislike' : 'like';
-      } else if (action === 'dislike') {
-        postAction = comment.isDisliked ? 'like' : 'dislike';
-      }
+      if (comment) {
+        let postAction: 'like' | 'dislike' = action;
 
+        if (action === 'like') {
+          postAction = comment.isLiked ? 'dislike' : 'like';
+        } else if (action === 'dislike') {
+          postAction = comment.isDisliked ? 'like' : 'dislike';
+        }
 
-      this.articleService.postAction(commentId, postAction)
-        .subscribe((data: DefaultResponseType) => {
+        this.articleService.postAction(commentId, postAction).subscribe((data: DefaultResponseType) => {
           if (!data.error) {
             if (action === 'like' || action === 'dislike') {
               let showSnackBar = true;
@@ -106,6 +103,7 @@ export class ArticleComponent implements OnInit {
             }
           }
         });
+      }
     }
   }
 
@@ -132,34 +130,32 @@ export class ArticleComponent implements OnInit {
   }
 
 
-
   addComment(id: string) {
     this.articleService.postComment(id, this.commentField)
       .subscribe((data: DefaultResponseType) => {
         if (data.error) {
           throw new Error(data.message);
         }
-          window.location.reload();
+        window.location.reload();
       })
   }
 
   uploadMoreComments() {
     this.isLoading = true;
     setTimeout(() => {
-      this.articleService.getComments(this.article.id, {offset: this.comments.length, article: this.article.id})
-        .subscribe((comments: { allCount: number, comments: CommentType[] }) => {
-
-          this.comments = this.comments.concat(comments.comments);
-          this.isMoreComments = this.comments.length < comments.allCount;
-
-          this.checkAndSetIsActionsStatus(this.comments);
-          this.isLoading = false;
-
-        })
+      if (this.article && this.comments) {
+        this.articleService.getComments(this.article.id, { offset: this.comments.length, article: this.article.id })
+          .subscribe((comments: { allCount: number, comments: CommentType[] }) => {
+            if (this.comments) {
+              this.comments = this.comments.concat(comments.comments);
+              this.isMoreComments = this.comments.length < comments.allCount;
+              this.checkAndSetIsActionsStatus(this.comments);
+            }
+            this.isLoading = false;
+          })
+      }
     }, 1000)
-
   }
-
 
   checkAndSetIsActionsStatus(comments: CommentType[]): void {
     comments.forEach(comment => {

@@ -66,7 +66,7 @@ export class BlogComponent implements OnInit {
                 if (this.pages.length > 1 && !params['page']) {
                   this.activeParams.page = 1;
 
-                  this.router.navigate(['/catalog'], {
+                  this.router.navigate(['/blog'], {
                     queryParams: this.activeParams
                   })
                 }

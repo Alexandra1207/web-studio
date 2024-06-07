@@ -16,8 +16,6 @@ export class RequestModalComponent {
   showSuccessMessage: boolean = false;
   failedRequest: boolean = false;
 
- private selectElement: any;
-
 
   constructor(public dialogRef: MatDialogRef<RequestModalComponent>, private fb: FormBuilder, private requestService: RequestService) {
     this.selectedOption = '';
@@ -25,18 +23,19 @@ export class RequestModalComponent {
 
   requestForm = this.fb.group({
     name: ['', Validators.required],
-    phone: ['', [Validators.required, Validators.pattern( /^\+(?:[0-9] ?){6,14}[0-9]$/)]],
-    service: ['']
+    phone: ['', [Validators.required, Validators.pattern(/^(?:\+)?(?:[0-9] ?){6,14}[0-9]$/)]],
+    service: [this.selectedOption]
   })
-  ngOnInit() {
-    this.requestForm = this.fb.group({
-      name: ['', Validators.required],
-      phone: ['', Validators.required],
-      service: [this.selectedOption]
-    });
 
+  ngOnInit() {
     const selectedOption = this.requestService.getSelectedOption();
-    this.selectedOption = selectedOption;
+    const serviceControl = this.requestForm.get('service');
+
+    if (serviceControl !== null) {
+      serviceControl.setValue(selectedOption || 'Заявка на созвон');
+    } else {
+      console.log("'service' не определен в форме.");
+    }
   }
 
 
@@ -51,30 +50,23 @@ export class RequestModalComponent {
 
 
   postInfo() {
-    if (this.requestForm) {
-      if (this.selectedOption) {
-        this.requestForm.value.service = this.selectedOption;
-      } else {
-        this.requestForm.value.service = 'Заявка на созвон';
-      }
+    if (this.requestForm.valid) {
 
-      this.requestService.postRequest(this.requestForm.value as { name: string, phone: string, service: string}).subscribe((data: DefaultResponseType) => {
-        if (!data.error) {
-          this.showSuccessMessage = true;
-        } else {
+      this.requestService.postRequest(this.requestForm.value).subscribe(
+        (data: DefaultResponseType) => {
+          if (!data.error) {
+            console.log(data);
+            this.showSuccessMessage = true;
+          } else {
+            this.failedRequest = true;
+          }
+        },
+        error => {
           this.failedRequest = true;
         }
-      }, error => {
-        this.failedRequest = true;
-      });
-
+      );
     }
-  }
 
-  getSelectedOption(event: any) {
-    const serviceControl = this.requestForm.get('service');
-    this.selectedOption = event.target.value;
-    this.requestForm.patchValue({service: this.selectedOption});
   }
 
 }

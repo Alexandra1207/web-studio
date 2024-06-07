@@ -3,6 +3,14 @@ import {HttpClient} from "@angular/common/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
 import {DefaultResponseType} from "../../../types/default-response.type";
+import {
+  AbstractControl,
+  ValidationErrors,
+  ValidatorFn,
+  ɵElement,
+  ɵFormGroupValue,
+  ɵTypedOrUntyped
+} from "@angular/forms";
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +24,7 @@ export class RequestService {
 
   showSelectElement: boolean = true;
 
-  postRequest(data: {name: string, phone: string, service: string}): Observable<DefaultResponseType> {
+  postRequest(data: ɵTypedOrUntyped<{ [K in keyof { phone: (string | (((control: AbstractControl) => (ValidationErrors | null)) | ValidatorFn)[])[]; service: string[]; name: (string | ((control: AbstractControl) => (ValidationErrors | null)))[] }]: ɵElement<{ phone: (string | (((control: AbstractControl) => (ValidationErrors | null)) | ValidatorFn)[])[]; service: string[]; name: (string | ((control: AbstractControl) => (ValidationErrors | null)))[] }[K], null> }, ɵFormGroupValue<{ [K in keyof { phone: (string | (((control: AbstractControl) => (ValidationErrors | null)) | ValidatorFn)[])[]; service: string[]; name: (string | ((control: AbstractControl) => (ValidationErrors | null)))[] }]: ɵElement<{ phone: (string | (((control: AbstractControl) => (ValidationErrors | null)) | ValidatorFn)[])[]; service: string[]; name: (string | ((control: AbstractControl) => (ValidationErrors | null)))[] }[K], null> }>, any>): Observable<DefaultResponseType> {
     return this.http.post<DefaultResponseType>(environment.api + 'requests',  {
       ...data,
       type: "order"
