@@ -65,57 +65,6 @@ export class ArticleComponent implements OnInit {
     return this.authService;
   }
 
-  // toggleAction(commentId: string, action: 'like' | 'dislike') {
-  //   if (!this.getAuthService().getIsLoggedIn()) {
-  //     this._snackBar.open('Чтобы поставить реакцию нужно войти или зарегистрироваться');
-  //     return;
-  //   }
-  //
-  //   if (this.comments) {
-  //     const comment: CommentType | undefined = this.comments.find(comment => comment.id === commentId);
-  //
-  //     if (comment) {
-  //       let postAction: 'like' | 'dislike' = action;
-  //
-  //       if (action === 'like') {
-  //         postAction = comment.isLiked ? 'dislike' : 'like';
-  //         comment.likesCount += comment.isLiked ? 1 : -1;
-  //       } else if (action === 'dislike') {
-  //         postAction = comment.isDisliked ? 'like' : 'dislike';
-  //         comment.dislikesCount += comment.isDisliked ? 1 : -1;
-  //       }
-  //
-  //       this.articleService.postAction(commentId, postAction).subscribe((data: DefaultResponseType) => {
-  //         if (!data.error) {
-  //           if (action === 'like' || action === 'dislike') {
-  //             let showSnackBar = true;
-  //             if (action === 'like') {
-  //               comment.isLiked = !comment.isLiked;
-  //               if (comment.isLiked) {
-  //                 comment.isDisliked = false;
-  //               }
-  //               comment.likesCount += comment.isLiked ? 1 : -1;
-  //             } else if (action === 'dislike') {
-  //               comment.isDisliked = !comment.isDisliked;
-  //               if (comment.isDisliked) {
-  //                 comment.isLiked = false;
-  //               }
-  //               comment.dislikesCount += comment.isDisliked ? 1 : -1;
-  //             }
-  //             if (!comment.isLiked && !comment.isDisliked) {
-  //               showSnackBar = false;
-  //             }
-  //             if (showSnackBar) {
-  //               this._snackBar.open('Ваш голос учтен');
-  //             }
-  //           }
-  //         }
-  //       });
-  //     }
-  //
-  //   }
-  // }
-
   toggleAction(commentId: string, action: 'like' | 'dislike') {
     if (!this.getAuthService().getIsLoggedIn()) {
       this._snackBar.open('Чтобы поставить реакцию, нужно войти или зарегистрироваться');
