@@ -32,7 +32,7 @@
         <img src="/assets/images/user.svg" alt="иконка пользователя">
         <span>Войти</span>
       </a>
-      <a [matMenuTriggerFor]="menu" *ngIf="isLogged && userInfo">
+      <a [matMenuTriggerFor]="menu" *ngIf="isLogged">
         <img src="/assets/images/user.svg" alt="иконка пользователя">
         <span>Привет, {{userName}}!</span>
       </a>

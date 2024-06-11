@@ -179,12 +179,11 @@ a {
         width: 422px;
       }
 
-      .invalid-feedback {
-        color: red;
-        margin: 15px 0;
-      }
+
     }
   }
+
+
 
   .request-button {
     .button {
@@ -200,6 +199,12 @@ a {
     }
 
   }
+}
+
+
+.invalid-feedback {
+  color: red;
+  margin: 15px 0;
 }
 
 .mat-mdc-dialog-surface.mdc-dialog__surface {

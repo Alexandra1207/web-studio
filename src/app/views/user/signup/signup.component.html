@@ -11,23 +11,45 @@
                  [ngStyle]="{'border-color': signupForm.get('name')?.invalid && (signupForm.get('name')?.dirty || signupForm.get('name')?.touched)
                  ? 'red' : ''}"
                  placeholder="Ваше имя" formControlName="name">
+          <div class="invalid-feedback"
+               *ngIf="signupForm.get('name')?.errors?.['required'] && (signupForm.get('name')?.touched || signupForm.get('name')?.dirty)">
+            Введите имя
+          </div>
         </div>
         <div class="auth-input">
           <input type="text" class="input" placeholder="Электронная почта"
                  [ngStyle]="{'border-color': signupForm.get('email')?.invalid && (signupForm.get('email')?.dirty || signupForm.get('email')?.touched)
                  ? 'red' : ''}"
                  formControlName="email">
+          <div class="invalid-feedback"
+               *ngIf="signupForm.get('email')?.errors?.['required'] && (signupForm.get('email')?.touched || signupForm.get('email')?.dirty)">
+            Введите электронную почту
+          </div>
+          <div class="invalid-feedback" *ngIf="signupForm.get('email')?.errors?.['email']">
+            Введите электронную почту в правильном формате
+          </div>
         </div>
         <div class="auth-input">
           <input type="password" class="input"
                  [ngStyle]="{'border-color': signupForm.get('password')?.invalid && (signupForm.get('password')?.dirty || signupForm.get('password')?.touched)
                  ? 'red' : ''}"
                  placeholder="Пароль" formControlName="password">
+          <div class="invalid-feedback"
+               *ngIf="signupForm.get('password')?.errors?.['required'] && (signupForm.get('password')?.touched || signupForm.get('password')?.dirty)">
+            Введите пароль
+          </div>
+          <div class="invalid-feedback"
+               *ngIf="signupForm.get('password')?.errors?.['pattern']">
+            Пароль должен быть не менее 8 символов, содержать как минимум 1 букву в верхнем регистре и как минимум 1
+            цифру
+          </div>
         </div>
         <div class="auth-checkbox">
           <input type="checkbox" id="agree" formControlName="agree">
           <label for="agree">
-            Я принимаю условия <a routerLink="/privacy-policy" fragment="user-agreement">пользовательского соглашения</a> и даю <a routerLink="/privacy-policy" fragment="personal-data">согласие на обработку персональных данных</a>.
+            Я принимаю условия <a routerLink="/privacy-policy" fragment="user-agreement">пользовательского
+            соглашения</a> и даю <a routerLink="/privacy-policy" fragment="personal-data">согласие на обработку
+            персональных данных</a>.
           </label>
         </div>
       </div>

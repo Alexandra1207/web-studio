@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {ArticleService} from "../../../shared/services/article.service";
 import {ActivatedRoute, Router} from "@angular/router";
 import {FullArticleType} from "../../../../types/full-article.type";
@@ -31,11 +31,23 @@ export class ArticleComponent implements OnInit {
   constructor(private articleService: ArticleService,
               private activatedRouter: ActivatedRoute,
               private _snackBar: MatSnackBar,
-              private authService: AuthService,) {
+              private authService: AuthService,
+              private cdRef: ChangeDetectorRef) {
   }
 
   ngOnInit() {
 
+    this.loadArticleAndComments();
+
+    this.activatedRouter.params.subscribe(params => {
+      this.articleService.getRelatedArticle(params['url'])
+        .subscribe((data: ArticleType[]) => {
+          this.relatedArticle = data;
+        })
+    })
+  }
+
+  loadArticleAndComments() {
     this.activatedRouter.params.subscribe(params => {
       this.articleService.getArticle(params['url'])
         .subscribe((data: FullArticleType) => {
@@ -47,64 +59,97 @@ export class ArticleComponent implements OnInit {
           this.checkAndSetIsActionsStatus(this.comments);
         })
     });
-
-    this.activatedRouter.params.subscribe(params => {
-      this.articleService.getRelatedArticle(params['url'])
-        .subscribe((data: ArticleType[]) => {
-          this.relatedArticle = data;
-        })
-    })
   }
 
   getAuthService(): AuthService {
     return this.authService;
   }
 
+  // toggleAction(commentId: string, action: 'like' | 'dislike') {
+  //   if (!this.getAuthService().getIsLoggedIn()) {
+  //     this._snackBar.open('Чтобы поставить реакцию нужно войти или зарегистрироваться');
+  //     return;
+  //   }
+  //
+  //   if (this.comments) {
+  //     const comment: CommentType | undefined = this.comments.find(comment => comment.id === commentId);
+  //
+  //     if (comment) {
+  //       let postAction: 'like' | 'dislike' = action;
+  //
+  //       if (action === 'like') {
+  //         postAction = comment.isLiked ? 'dislike' : 'like';
+  //         comment.likesCount += comment.isLiked ? 1 : -1;
+  //       } else if (action === 'dislike') {
+  //         postAction = comment.isDisliked ? 'like' : 'dislike';
+  //         comment.dislikesCount += comment.isDisliked ? 1 : -1;
+  //       }
+  //
+  //       this.articleService.postAction(commentId, postAction).subscribe((data: DefaultResponseType) => {
+  //         if (!data.error) {
+  //           if (action === 'like' || action === 'dislike') {
+  //             let showSnackBar = true;
+  //             if (action === 'like') {
+  //               comment.isLiked = !comment.isLiked;
+  //               if (comment.isLiked) {
+  //                 comment.isDisliked = false;
+  //               }
+  //               comment.likesCount += comment.isLiked ? 1 : -1;
+  //             } else if (action === 'dislike') {
+  //               comment.isDisliked = !comment.isDisliked;
+  //               if (comment.isDisliked) {
+  //                 comment.isLiked = false;
+  //               }
+  //               comment.dislikesCount += comment.isDisliked ? 1 : -1;
+  //             }
+  //             if (!comment.isLiked && !comment.isDisliked) {
+  //               showSnackBar = false;
+  //             }
+  //             if (showSnackBar) {
+  //               this._snackBar.open('Ваш голос учтен');
+  //             }
+  //           }
+  //         }
+  //       });
+  //     }
+  //
+  //   }
+  // }
+
   toggleAction(commentId: string, action: 'like' | 'dislike') {
     if (!this.getAuthService().getIsLoggedIn()) {
-      this._snackBar.open('Чтобы поставить реакцию нужно войти или зарегистрироваться');
+      this._snackBar.open('Чтобы поставить реакцию, нужно войти или зарегистрироваться');
       return;
     }
-
     if (this.comments) {
-      const comment: CommentType | undefined = this.comments.find(comment => comment.id === commentId);
-
-      if (comment) {
-        let postAction: 'like' | 'dislike' = action;
+      const commentIndex = this.comments.findIndex(comment => comment.id === commentId);
+      if (commentIndex !== -1) {
+        const comment = this.comments[commentIndex];
 
         if (action === 'like') {
-          postAction = comment.isLiked ? 'dislike' : 'like';
+          comment.isLiked = !comment.isLiked;
+          comment.likesCount += comment.isLiked ? 1 : -1;
+          if (comment.isLiked && comment.isDisliked) {
+            comment.isDisliked = false;
+            comment.dislikesCount -= 1;
+          }
         } else if (action === 'dislike') {
-          postAction = comment.isDisliked ? 'like' : 'dislike';
+          comment.isDisliked = !comment.isDisliked;
+          comment.dislikesCount += comment.isDisliked ? 1 : -1;
+          if (comment.isDisliked && comment.isLiked) {
+            comment.isLiked = false;
+            comment.likesCount -= 1;
+          }
         }
-
-        this.articleService.postAction(commentId, postAction).subscribe((data: DefaultResponseType) => {
+        this.articleService.postAction(commentId, action).subscribe((data: DefaultResponseType) => {
           if (!data.error) {
-            if (action === 'like' || action === 'dislike') {
-              let showSnackBar = true;
-              if (action === 'like') {
-                comment.isLiked = !comment.isLiked;
-                if (comment.isLiked) {
-                  comment.isDisliked = false;
-                }
-                comment.likesCount += comment.isLiked ? 1 : -1;
-              } else if (action === 'dislike') {
-                comment.isDisliked = !comment.isDisliked;
-                if (comment.isDisliked) {
-                  comment.isLiked = false;
-                }
-              }
-              if (!comment.isLiked && !comment.isDisliked) {
-                showSnackBar = false;
-              }
-              if (showSnackBar) {
-                this._snackBar.open('Ваш голос учтен');
-              }
-            }
+            this._snackBar.open('Ваш голос учтен');
+            this.comments = [...(this.comments || [])];
           }
         });
       }
     }
+    this.cdRef.detectChanges();
   }
 
   reportViolation(commentId: string) {
@@ -129,14 +174,13 @@ export class ArticleComponent implements OnInit {
       });
   }
 
-
   addComment(id: string) {
     this.articleService.postComment(id, this.commentField)
       .subscribe((data: DefaultResponseType) => {
         if (data.error) {
           throw new Error(data.message);
         }
-        window.location.reload();
+        this.loadArticleAndComments();
       })
   }
 
@@ -144,7 +188,7 @@ export class ArticleComponent implements OnInit {
     this.isLoading = true;
     setTimeout(() => {
       if (this.article && this.comments) {
-        this.articleService.getComments(this.article.id, { offset: this.comments.length, article: this.article.id })
+        this.articleService.getComments(this.article.id, {offset: this.comments.length, article: this.article.id})
           .subscribe((comments: { allCount: number, comments: CommentType[] }) => {
             if (this.comments) {
               this.comments = this.comments.concat(comments.comments);

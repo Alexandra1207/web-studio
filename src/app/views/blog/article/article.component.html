@@ -100,13 +100,14 @@
                 <div class="article-comments-item-user-date">{{comment.date | formatDate}}</div>
               </div>
             </div>
-            <div class="article-comments-item-text">
+            <div class="article-comments-item-text" >
               {{comment.text}}
             </div>
             <div class="article-comments-feedback">
               <div class="like-dislike">
                 <div class="like-count"
-                     [ngStyle]="{'color': comment.isLiked ? '#709FDC' : ''}">{{comment.likesCount}}</div>
+                     [ngStyle]="{'color': comment.isLiked ? '#709FDC' : ''}" [textContent]="comment.likesCount">{{comment.likesCount}}</div>
+
                 <a (click)="toggleAction(comment.id, 'like')">
 
                   <svg *ngIf="!comment.isLiked" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -132,7 +133,7 @@
               </div>
               <div class="like-dislike">
                 <div class="dislike-count"
-                     [ngStyle]="{'color': comment.isDisliked ? '#709FDC' : ''}">{{comment.dislikesCount}}</div>
+                     [ngStyle]="{'color': comment.isDisliked ? '#709FDC' : ''}" [textContent]="comment.dislikesCount">{{comment.dislikesCount}}</div>
                 <a (click)="toggleAction(comment.id, 'dislike')">
                   <svg *ngIf="!comment.isDisliked" width="24" height="24" viewBox="0 0 24 24" fill="none"
                        xmlns="http://www.w3.org/2000/svg">

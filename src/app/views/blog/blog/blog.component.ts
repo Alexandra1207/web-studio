@@ -83,7 +83,6 @@ export class BlogComponent implements OnInit {
   updateFilterParam(url: string) {
 
     if (this.activeParams.categories && this.activeParams.categories.length > 0) {
-
       if (this.activeParams.categories) {
         const existingCategoryInParam = (Array.isArray(this.activeParams.categories) ? this.activeParams.categories : [this.activeParams.categories]).find(item => item === url);
 
